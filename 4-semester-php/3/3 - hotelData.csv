@@ -1,0 +1,3 @@
+"First Name";"Last Name";Email;Address;CardNumber;CardValidationDate;CheckIn;CheckOut;numberOfGuests
+Pawel;Badysiak;bade@op.pl;"Aleja Wojska Polskiego";1234123412341234;2021-05;2021-04-19T12:30;2021-04-21T00:00;1
+pietr;keke;pk@po.pl;"hehe strasse";12345612345612;2021-05;2021-05-08T17:30;2021-07-21T00:00;1
