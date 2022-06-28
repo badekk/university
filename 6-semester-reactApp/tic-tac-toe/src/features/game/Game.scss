@@ -1,0 +1,40 @@
+@import "../../common.scss";
+
+.board {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: stretch;
+  width: min-content !important;
+}
+
+.board-table {
+  width: auto !important;
+  tbody,
+  td,
+  tr {
+    border-width: 3px !important;
+    border-color: black;
+    padding: 0 !important;
+  }
+}
+
+.board-cell {
+  height: 3rem;
+  width: 3rem;
+  font-size: 2rem !important;
+  padding-top: 0 !important;
+
+  background-color: $color_palette_4 !important;
+  border-color: $color_palette_4 !important;
+
+  &:hover {
+    background-color: $color_palette_5 !important;
+    border-color: $color_palette_5 !important;
+  }
+
+  &:disabled {
+    background-color: $color_palette_3 !important;
+    border-color: $color_palette_3 !important;
+  }
+}

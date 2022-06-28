@@ -1,0 +1,25 @@
+@import "../../common.scss";
+
+.profile-table {
+  margin-top: 1rem !important;
+}
+
+.profile-section {
+  border: 0.5em solid;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  .profile-table {
+    width: 10rem;
+  }
+
+  .name-row {
+    margin-left: 1.5rem;
+  }
+
+  .stats-row {
+    margin-left: auto;
+    margin-right: 2rem;
+  }
+}

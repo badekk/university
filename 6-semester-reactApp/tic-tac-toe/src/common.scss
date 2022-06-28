@@ -1,0 +1,20 @@
+$color_palette_1: #031926;
+$color_palette_2: #b7aca8;
+$color_palette_3: #77aca2;
+$color_palette_4: #fffade;
+$color_palette_5: #efc88b;
+
+.content {
+  padding-top: 2vmin;
+  background-color: $color_palette_2;
+  height: 100%;
+}
+
+.align-center {
+  text-align: center;
+}
+
+.error {
+  color: red;
+  font-style: italic;
+}

@@ -1,0 +1,16 @@
+@import "../../common.scss";
+
+.highscore-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: stretch;
+
+  .row {
+    text-align: center;
+  }
+}
+
+.table-label {
+  font-size: 2rem;
+}

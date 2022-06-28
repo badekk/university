@@ -1,0 +1,34 @@
+@import "../../common.scss";
+
+.slider {
+  width: 12.2rem !important;
+}
+
+.slider-vertical {
+  @extend .slider;
+  transform-origin: 93px 106px;
+  transform: rotate(-90deg);
+}
+
+.image-col {
+  text-align: right;
+  padding-bottom: calc(var(--bs-gutter-x) * 0.5);
+}
+
+.board-row {
+  margin-top: 2vh !important;
+}
+
+.switch-col {
+  display: flex;
+  justify-content: center;
+}
+
+.board-label-vertical {
+  margin-left: 2em;
+  margin-top: 3em;
+}
+
+form button[type="submit"] {
+  width: 100%;
+}

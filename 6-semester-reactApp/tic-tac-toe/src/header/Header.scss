@@ -1,0 +1,20 @@
+@import "../common.scss";
+
+$button_spacing: 1vmin;
+
+.nav-button-row {
+  margin-top: $button_spacing !important;
+
+  button {
+    width: 100%;
+  }
+}
+
+.col-img {
+  text-align: center;
+}
+
+.header {
+  background-color: $color_palette_5;
+  padding-bottom: $button_spacing;
+}
