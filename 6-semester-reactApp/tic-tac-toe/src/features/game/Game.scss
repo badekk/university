@@ -1,5 +1,13 @@
 @import "../../common.scss";
 
+h2, h3 {
+  text-align: center;
+}
+
+.activePlayer {
+  color: red !important;
+}
+
 .board {
   display: flex;
   justify-content: center;

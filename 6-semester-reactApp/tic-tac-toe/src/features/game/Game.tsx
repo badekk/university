@@ -56,7 +56,7 @@ export default function Game() {
     if (didWin) {
       setEnd(true);
       endGame(false);
-      alert(`${sym} has won !`);
+      alert(`${currentGame.activePlayer?.name} has won !`);
       return;
     }
 
@@ -116,7 +116,7 @@ export default function Game() {
   return (
     <Container className="content">
       <h2>{currentGame.players[0].name} vs {currentGame.players[1].name}</h2>
-      <h3> Now is {currentGame.activePlayer?.name} turn !</h3>
+      <h3> Now is <span className="activePlayer">{currentGame.activePlayer?.name}</span> turn !</h3>
       <Container className="board">
         <Table className="board-table" bordered>
           <tbody>
