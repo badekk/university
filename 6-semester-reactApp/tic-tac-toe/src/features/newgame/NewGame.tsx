@@ -2,12 +2,14 @@ import React, { useState } from "react";
 import { Button, Col, Container, Form, Image, Row } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import { useDispatch } from "react-redux";
 
 import board from "./newgame_board.jpeg";
 import { ROUTES } from "../../Routes";
 import "./NewGame.scss";
-import { getProfileList } from "../profiles/profileSlice";
+import { getProfileList } from "../storage/profileSlice";
 import { useAppSelector } from "../../app/hooks";
+import { newGameStart } from "../storage/currentGameSlice";
 
 const SELECT_PROFILE = "Select profile...";
 const PROFILE_REQUIRED = "Profile is required";
@@ -33,6 +35,7 @@ const profileError = (id: any) =>
   id && <span className="error"> {id.message} </span>;
 
 export default function NewGame() {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const {
     register,
@@ -79,6 +82,8 @@ export default function NewGame() {
   };
 
   const submitForm = (data: any) => {
+    const players = profileList.filter( x => [firstPlayer, secondPlayer].includes(x.id.toString()));
+    dispatch(newGameStart({height,width, players: players }));
     navigate(ROUTES.GAME, {
       state: {
         width: width,

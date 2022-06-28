@@ -1,6 +1,6 @@
 import React from "react";
 import { Container } from "react-bootstrap";
-import { ProfileItem } from "../profiles/profileSlice";
+import { ProfileItem } from "../storage/profileSlice";
 
 import "./HighScore.scss";
 import ScoreTable from "./ScoreTable";

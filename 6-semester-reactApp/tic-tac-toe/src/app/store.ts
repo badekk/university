@@ -1,5 +1,6 @@
 import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit";
-import profileReducer from "../features/profiles/profileSlice";
+import currentGameSlice from "../features/storage/currentGameSlice";
+import profileReducer from "../features/storage/profileSlice";
 
 const LOCALSTORAGE_KEY = "ttt_key";
 
@@ -29,6 +30,7 @@ function loadFromLocalStorage() {
 export const store = configureStore({
   reducer: {
     profile: profileReducer,
+    currentGame: currentGameSlice,
   },
   preloadedState: loadFromLocalStorage(),
 });

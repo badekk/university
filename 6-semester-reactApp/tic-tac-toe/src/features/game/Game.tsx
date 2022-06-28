@@ -1,9 +1,12 @@
 import React, { useState } from "react";
 import { Button, Container, Table } from "react-bootstrap";
+import { useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 
 import { useAppSelector, useAppDispatch } from "../../app/hooks";
-import { endGameFinish } from "../profiles/profileSlice";
+import { RootState } from "../../app/store";
+import { GameState } from "../storage/currentGameSlice";
+import { endGameFinish } from "../storage/profileSlice";
 
 import { Direction, DIRECTIONS } from "./Directions";
 import "./Game.scss";
@@ -23,6 +26,7 @@ const clearBoard = (height: number, width: number) =>
   [...Array(Number(height))].map((_) => [...Array(Number(width))]);
 
 export default function Game() {
+  const currentGame = useSelector((state:RootState) => state.currentGame)
   const boardSettings = useLocation().state as BoardState;
   const dispatch = useAppDispatch();
 
@@ -111,6 +115,8 @@ export default function Game() {
 
   return (
     <Container className="content">
+      <h2>{currentGame.players[0].name} vs {currentGame.players[1].name}</h2>
+      <h3> Now is {currentGame.activePlayer?.name} turn !</h3>
       <Container className="board">
         <Table className="board-table" bordered>
           <tbody>

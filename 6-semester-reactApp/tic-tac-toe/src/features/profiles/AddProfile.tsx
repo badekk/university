@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Button, Form, Modal } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { useAppDispatch } from "../../app/hooks";
-import { createProfile, GameStats, ProfileItem } from "./profileSlice";
+import { createProfile, GameStats, ProfileItem } from "../storage/profileSlice";
 
 export interface AddProfileProps {
   show: boolean;
@@ -33,7 +33,7 @@ export default function AddProfile(props: AddProfileProps) {
   } = useForm();
 
   const submitForm = (data: any) => {
-    dispatch(createProfile({ name: profileName, stats: emptyStats }));
+    dispatch(createProfile({id: 0, name: profileName, stats: emptyStats }));
     props.onHide();
   };
 
