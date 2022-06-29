@@ -1,7 +1,7 @@
-import { ProfileItem } from "../storage/profileSlice";
+import { ProfileItem } from "../store/profileSlice";
 import { Row, Table } from "react-bootstrap";
 import { useAppSelector } from "../../app/hooks";
-import { getProfileList } from "../storage/profileSlice";
+import { getProfileList } from "../store/profileSlice";
 
 const NAME = "Name";
 const COUNT = "Count";

@@ -1,6 +1,6 @@
 import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit";
-import currentGameSlice from "../features/storage/currentGameSlice";
-import profileReducer from "../features/storage/profileSlice";
+import currentGameSlice from "../features/store/currentGameSlice";
+import profileReducer from "../features/store/profileSlice";
 
 const LOCALSTORAGE_KEY = "ttt_key";
 

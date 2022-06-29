@@ -5,7 +5,7 @@ import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import AddProfile from "./AddProfile";
 
 import "./Profiles.scss";
-import { deleteProfile, getProfileList } from "../storage/profileSlice";
+import { deleteProfile, getProfileList } from "../store/profileSlice";
 
 const NAME_HEADER = "Name";
 const WIN_HEADER = "Win";

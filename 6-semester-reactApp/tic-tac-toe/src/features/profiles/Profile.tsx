@@ -1,7 +1,7 @@
 import React from "react";
 import { Container, Image, Row, Table } from "react-bootstrap";
 import { useLocation, useParams } from "react-router-dom";
-import { ProfileItem } from "../storage/profileSlice";
+import { ProfileItem } from "../store/profileSlice";
 import logo from "../../assets/logo.jpeg";
 
 export interface SingleProfileState {

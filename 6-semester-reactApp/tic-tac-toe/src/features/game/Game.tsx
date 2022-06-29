@@ -1,93 +1,83 @@
-import React, { useState } from "react";
+import React from "react";
 import { Button, Container, Table } from "react-bootstrap";
 import { useSelector } from "react-redux";
-import { useLocation } from "react-router-dom";
 
-import { useAppSelector, useAppDispatch } from "../../app/hooks";
+import { useAppDispatch } from "../../app/hooks";
 import { RootState } from "../../app/store";
-import { GameState } from "../storage/currentGameSlice";
-import { endGameFinish } from "../storage/profileSlice";
+import {
+  addMove,
+  endGame,
+  GameProgressStatus,
+  switchActivePlayer,
+  switchAndRestart
+} from "../store/currentGameSlice";
 
 import { Direction, DIRECTIONS } from "./Directions";
 import "./Game.scss";
+import { ActionCreators } from 'redux-undo';
+import { endGameFinish } from '../store/profileSlice';
 
 const PLAY_AGAIN = "Play again";
 
-interface BoardState {
-  readonly width: number;
-  readonly height: number;
-  readonly winCount: number;
-  readonly availableMoves: number;
-  readonly playerOne: number;
-  readonly playerTwo: number;
-}
-
-const clearBoard = (height: number, width: number) =>
-  [...Array(Number(height))].map((_) => [...Array(Number(width))]);
-
 export default function Game() {
-  const currentGame = useSelector((state:RootState) => state.currentGame)
-  const boardSettings = useLocation().state as BoardState;
+  const currentGame = useSelector((state: RootState) => state.currentGame.present)
   const dispatch = useAppDispatch();
+  const availableMoves = useSelector((state: RootState) => {
+    return state.currentGame.present.board.length * state.currentGame.present.board[ 0 ].length;
+  })
 
-  const [board, setBoard] = useState(
-    clearBoard(boardSettings.height, boardSettings.width)
-  );
-  const [sym, setSym] = useState("X");
-  const [end, setEnd] = useState(false);
-  const [moves, setMoves] = useState(1);
+  const canUndo: boolean = useSelector((state: RootState) => state.currentGame.past.length > 0)
 
-  const isDraw = () => moves === boardSettings.availableMoves;
+  const WIN_COUNT = 3;
 
-  const endGame = (draw: boolean) => {
-    const winner =
-      sym === "X" ? boardSettings.playerOne : boardSettings.playerTwo;
-    const loser =
-      sym === "X" ? boardSettings.playerTwo : boardSettings.playerOne;
-    dispatch(endGameFinish({ winnerId: winner, loserId: loser, draw: draw }));
-  };
+  const board = currentGame.board;
 
   const clickButton = (i: number, j: number) => {
-    board[i][j] = sym;
-    setBoard((board) => [...board]);
-    setMoves(moves + 1);
+    const otherPlayer = currentGame.player1!.id === currentGame.activePlayer!.id ?
+      currentGame.player2 : currentGame.player1;
+    if (currentGame.board[ i ][ j ]) {
+      return
+    }
+    dispatch(addMove({ x: j, y: i }))
 
-    const didWin = checkForWin(i, j, sym);
+    const didWin = checkForWin(i, j);
     if (didWin) {
-      setEnd(true);
-      endGame(false);
-      alert(`${currentGame.activePlayer?.name} has won !`);
+      dispatch(endGame({ winner: currentGame.activePlayer! }))
+      dispatch(endGameFinish({
+        winnerId: currentGame.activePlayer!.id,
+        loserId: otherPlayer!.id,
+        draw: false
+      }))
+      setTimeout(() => alert(`${ currentGame.activePlayer?.name } has won !`), 0);
       return;
     }
 
-    if (isDraw()) {
-      setEnd(true);
-      endGame(true);
+    if (currentGame.totalMoves + 1 === availableMoves) {
+      dispatch(endGame({}));
+      dispatch(endGameFinish({
+        winnerId: currentGame.activePlayer!.id,
+        loserId: otherPlayer!.id,
+        draw: true
+      }))
       alert("draw");
       return;
     }
-
-    const newsym = "X" === sym ? "O" : "X";
-    setSym(newsym);
+    dispatch(switchActivePlayer());
   };
 
   const playAgain = () => {
-    setBoard((board) => [
-      ...clearBoard(boardSettings.height, boardSettings.width),
-    ]);
-    setSym("X");
-    setMoves(1);
-    setEnd(false);
+    dispatch(switchAndRestart());
+    dispatch(ActionCreators.clearHistory());
   };
 
-  const checkForWin = (i: number, j: number, symbol: string) => {
+  const checkForWin = (i: number, j: number) => {
     const count = Math.max(
       countPath(DIRECTIONS.UP_LEFT, DIRECTIONS.DOWN_RIGHT, i, j),
       countPath(DIRECTIONS.UP, DIRECTIONS.DOWN, i, j),
       countPath(DIRECTIONS.UP_RIGHT, DIRECTIONS.DOWN_LEFT, i, j),
       countPath(DIRECTIONS.LEFT, DIRECTIONS.RIGHT, i, j)
     );
-    return count >= boardSettings.winCount;
+    return count >= WIN_COUNT;
   };
 
   const countPath = (
@@ -105,7 +95,7 @@ export default function Game() {
     let row = y + dir.y;
     let column = x + dir.x;
     let count = 0;
-    while (board?.[row]?.[column] === sym) {
+    while (board?.[ row ]?.[ column ] === currentGame.activePlayer!.symbol) {
       row += dir.y;
       column += dir.x;
       count++;
@@ -115,34 +105,43 @@ export default function Game() {
 
   return (
     <Container className="content">
-      <h2>{currentGame.players[0].name} vs {currentGame.players[1].name}</h2>
-      <h3> Now is <span className="activePlayer">{currentGame.activePlayer?.name}</span> turn !</h3>
+      <h2>{ currentGame.player1!.name } ({ currentGame.player1!.symbol })
+        vs { currentGame.player2!.name } ({ currentGame.player2!.symbol })</h2>
+      { currentGame.progressStatus === GameProgressStatus.IN_PROGRESS ?
+        <h3> Now is <span className="activePlayer">{ currentGame.activePlayer?.name }</span> turn !
+        </h3>
+        : null }
       <Container className="board">
         <Table className="board-table" bordered>
           <tbody>
-            {board.map((row, i) => (
-              <tr>
-                {row.map((cell, j) => (
-                  <td>
-                    <Button
-                      className="board-cell"
-                      key={`${i}_${j}`}
-                      disabled={board[i][j] || end}
-                      onClick={(x: any) => clickButton(i, j)}
-                    >
-                      {board[i][j]}
-                    </Button>
-                  </td>
-                ))}
-              </tr>
-            ))}
+          { currentGame.board.map((row, i) => (
+            <tr>
+              { row.map((cell, j) => (
+                <td>
+                  <Button
+                    className="board-cell"
+                    key={ `y${ i }_x${ j }` }
+                    disabled={ currentGame.progressStatus !== GameProgressStatus.IN_PROGRESS }
+                    onClick={ (x: any) => clickButton(i, j) }
+                  >
+                    { board[ i ][ j ] }
+                  </Button>
+                </td>
+              )) }
+            </tr>
+          )) }
           </tbody>
         </Table>
-        {end && (
-          <Button variant="success" onClick={playAgain}>
-            {PLAY_AGAIN}
+        { currentGame.progressStatus !== GameProgressStatus.IN_PROGRESS && (
+          <Button variant="success" onClick={ playAgain }>
+            { PLAY_AGAIN }
           </Button>
-        )}
+        ) }
+        { canUndo ?
+          <Button variant="info" onClick={ () => {
+            dispatch(ActionCreators.undo());
+          } }>Undo</Button>
+          : null }
       </Container>
     </Container>
   );

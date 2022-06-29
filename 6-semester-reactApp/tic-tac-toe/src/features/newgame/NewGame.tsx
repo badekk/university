@@ -7,9 +7,10 @@ import { useDispatch } from "react-redux";
 import board from "./newgame_board.jpeg";
 import { ROUTES } from "../../Routes";
 import "./NewGame.scss";
-import { getProfileList } from "../storage/profileSlice";
+import { getProfileList } from "../store/profileSlice";
 import { useAppSelector } from "../../app/hooks";
-import { newGameStart } from "../storage/currentGameSlice";
+import { newGameStart } from "../store/currentGameSlice";
+import { ActionCreators } from 'redux-undo';
 
 const SELECT_PROFILE = "Select profile...";
 const PROFILE_REQUIRED = "Profile is required";
@@ -84,16 +85,8 @@ export default function NewGame() {
   const submitForm = (data: any) => {
     const players = profileList.filter( x => [firstPlayer, secondPlayer].includes(x.id.toString()));
     dispatch(newGameStart({height,width, players: players }));
-    navigate(ROUTES.GAME, {
-      state: {
-        width: width,
-        height: height,
-        availableMoves: width * height,
-        winCount: 3,
-        playerOne: Number(firstPlayer),
-        playerTwo: Number(secondPlayer),
-      },
-    });
+    dispatch(ActionCreators.clearHistory());
+    navigate(ROUTES.GAME);
   };
 
   return (

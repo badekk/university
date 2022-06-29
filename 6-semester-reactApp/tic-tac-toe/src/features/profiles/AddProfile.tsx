@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Button, Form, Modal } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { useAppDispatch } from "../../app/hooks";
-import { createProfile, GameStats, ProfileItem } from "../storage/profileSlice";
+import { createProfile, GameStats, ProfileItem } from "../store/profileSlice";
 
 export interface AddProfileProps {
   show: boolean;
@@ -59,6 +59,7 @@ export default function AddProfile(props: AddProfileProps) {
             })}
           ></Form.Control>
           {errors.newProfileName && (
+            // @ts-expect-error:
             <span className="error"> {errors.newProfileName.message} </span>
           )}
         </Form>
