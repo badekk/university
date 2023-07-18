@@ -1,0 +1,107 @@
+<resources>
+    <string name="app_name">YouApp</string>
+    <string name="title_bmi_calc">BMI calculator</string>
+    <string name="title_calories">Count calories</string>
+    <string name="title_recipe">Example recipes</string>
+    <string name="title_chart">BMI chart</string>
+    <string name="enter_age">Enter age</string>
+    <string name="enter_weight">Enter weight [kg]</string>
+    <string name="enter_height">Enter height [cm]</string>
+    <string name="calculate_bmi">Calculate BMI </string>
+    <string name="calculate_calories">Calculate calories </string>
+    <string name="bmi_result">BMI result: </string>
+    <string name="calories_result">Result: </string>
+    <string name="bmi_score_underweight">UNDERWEIGHT</string>
+    <string name="bmi_score_healthy_weight">HEALTHY_WEIGHT</string>
+    <string name="bmi_score_overweight">OVERWEIGHT</string>
+    <string name="title_quiz">health quiz</string>
+    <string name="quiz_question">Question</string>
+    <string name="quiz_answer_1">Answer 1</string>
+    <string name="quiz_answer_2">Answer 2</string>
+    <string name="quiz_answer_3">Answer 3</string>
+    <string name="quiz_submit">Submit</string>
+    <!---->
+    <string-array name="gender_dropdown">
+        <item>MALE</item>
+        <item>FEMALE</item>
+    </string-array>
+    <!---->
+    <string-array name="recipes">
+        <item>Baked Lemon Herb Chicken</item>
+        <item>T.C.A. salad</item>
+    </string-array>
+
+    <string-array name="recipe_ingredients_baked_lemon_herb_chicken">
+        <item>4 boneless, skinless chicken breasts</item>
+        <item>2 tbsp olive oil</item>
+        <item>2 tsp garlic powder</item>
+        <item>2 tsp paprika</item>
+        <item>1 tsp dried thyme</item>
+        <item>1 tsp dried oregano</item>
+    </string-array>
+
+    <string-array name="recipe_instructions_baked_lemon_herb_chicken">
+        <item>1. Preheat oven to 400°F (200°C)</item>
+        <item>2. In a small bowl, mix together the olive oil, garlic powder, paprika, thyme, oregano, salt, and pepper</item>
+        <item>3. Place the chicken breasts in a baking dish and brush them with the spice mixture, making sure to coat both sides</item>
+        <item>4. Bake the chicken for 25-30 minutes, or until the internal temperature reaches 165°F (74°C)</item>
+        <item>5. Remove the chicken from the oven and let it rest for 5-10 minutes before slicing and serving</item>
+        <item>6. Enjoy your delicious and healthy baked chicken</item>
+    </string-array>
+
+    <string-array name="recipe_ingredients_tomato_cucumber_and_avocado_salad">
+        <item>2 cups mixed greens</item>
+        <item>1 cup cherry tomatoes</item>
+        <item>½ cup sliced cucumber</item>
+        <item>¼ cup sliced red onion</item>
+        <item>¼ cup crumbled feta cheese</item>
+        <item>2 tbsp balsamic vinaigrette</item>
+        <item>Salt and pepper to taste</item>
+    </string-array>
+
+    <string-array name="recipe_instructions_tomato_cucumber_and_avocado_salad">
+        <item>1. Heat the vegetable oil in a large skillet over medium-high heat. Add the sliced beef and cook until browned on all sides. Remove the beef from the skillet and set aside.</item>
+        <item>2. Add the chopped onion to the same skillet and cook until softened, about 5 minutes. Add the minced garlic and sliced mushrooms and cook for an additional 2-3 minutes.</item>
+        <item>3. Pour in the beef broth, Worcestershire sauce, and Dijon mustard. Stir to combine and bring to a simmer.</item>
+        <item>4. Add the browned beef back to the skillet and let the mixture simmer for 10-15 minutes, or until the beef is cooked through and the sauce has thickened slightly.</item>
+        <item>5. Stir in the sour cream and season with salt and pepper to taste.</item>
+        <item>6. Serve the beef stroganoff over cooked egg noodles.</item>
+    </string-array>
+    <!---->
+    <string name="question_1">What is the recommended amount of vegetables you should eat each day?</string>
+    <string name="question_2">Which nutrient is important for building strong bones?</string>
+    <string name="question_3">What is a healthy blood pressure reading?</string>
+    <string name="question_4">Which of the following is a good source of healthy fats?</string>
+    <string name="question_5">What is the recommended daily intake of water for adults?</string>
+    <string name="question_6">What is the recommended daily limit for added sugars for adults?</string>
+
+    <string name="q1_answer_a">1 serving</string>
+    <string name="q1_answer_b">3 servings</string>
+    <string name="q1_answer_c">5 servings</string>
+    <string name="q1_answer_correct_index">2</string>
+
+    <string name="q2_answer_a">Vitamin C</string>
+    <string name="q2_answer_b">Vitamin D</string>
+    <string name="q2_answer_c">Iron</string>
+    <string name="q2_answer_correct_index">1</string>
+
+    <string name="q3_answer_a">120/80</string>
+    <string name="q3_answer_b">140/90</string>
+    <string name="q3_answer_c">160/100</string>
+    <string name="q3_answer_correct_index">0</string>
+
+    <string name="q4_answer_a">French fries</string>
+    <string name="q4_answer_b">Avocado</string>
+    <string name="q4_answer_c">Milkshake</string>
+    <string name="q4_answer_correct_index">1</string>
+
+    <string name="q5_answer_a">2 liters</string>
+    <string name="q5_answer_b">5 liters</string>
+    <string name="q5_answer_c">1 liter</string>
+    <string name="q5_answer_correct_index">0</string>
+
+    <string name="q6_answer_a">10 grams</string>
+    <string name="q6_answer_b">25 grams</string>
+    <string name="q6_answer_c">50 grams</string>
+    <string name="q6_answer_correct_index">1</string>
+</resources>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/nav_bmi_calculator"
+        android:title="BMI Calc"
+        android:icon="@drawable/bmi_icon" />
+    <item
+        android:id="@+id/nav_calories_calculator"
+        android:title="Calories Calc"
+        android:icon="@drawable/calories_icon" />
+    <item
+        android:id="@+id/nav_recipes"
+        android:title="Recipes"
+        android:icon="@drawable/recipes_icon" />
+</menu>
