@@ -14,4 +14,6 @@ This repository is a list of projects that I wrote during my studies.
 - 5-semester-tin - JavaScript, included only semestral project (MineSweeper)
 - 6-semester-.NET - using best practices (SOLID) in .NET
 - 6-semester-reactApp - Creating react application for semestral project (Tic Tac Toe)
+- 7-semester-AI - Creating Neural Network / Fuzzy Logic using Python
+- 8-semester-Mobile - Creating semestral project in Android Studio using Java ( + exercises )
   
